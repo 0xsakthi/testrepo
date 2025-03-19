@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %}Home - Flask Message App{% endblock %}
+
+{% block content %}
+<div class="jumbotron">
+    <h1 class="display-4">Welcome to Message App</h1>
+    <p class="lead">A simple application for posting public and private messages.</p>
+    <hr class="my-4">
+    {% if not session.get('user_id') %}
+    <p>Please login or create an account to get started.</p>
+    <a class="btn btn-primary btn-lg" href="/login" role="button">Login</a>
+    <a class="btn btn-secondary btn-lg" href="/signup" role="button">Sign Up</a>
+    {% else %}
+    <a class="btn btn-primary btn-lg" href="/dashboard" role="button">Go to Dashboard</a>
+    {% endif %}
+</div>
+{% endblock %}

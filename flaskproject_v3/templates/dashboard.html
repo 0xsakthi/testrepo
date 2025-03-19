@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %}Dashboard - Flask Message App{% endblock %}
+
+{% block content %}
+<h2>Welcome, {{ username }}!</h2>
+<p>View all public messages and your private messages below.</p>
+<a href="/post-message" class="btn btn-primary mb-4">Post New Message</a>
+
+<h3>Messages</h3>
+{% if messages %}
+    {% for message in messages %}
+        <div class="message {% if message.is_public %}public-message{% else %}private-message{% endif %}">
+            <strong>{{ message.username }}</strong> 
+            <small class="text-muted">{{ message.created_at }}</small>
+            <span class="badge {% if message.is_public %}bg-info{% else %}bg-warning{% endif %} float-end">
+                {% if message.is_public %}Public{% else %}Private{% endif %}
+            </span>
+            <p class="mt-2">{{ message.content }}</p>
+        </div>
+    {% endfor %}
+{% else %}
+    <p>No messages to display.</p>
+{% endif %}
+{% endblock %}
